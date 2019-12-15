@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors')();
-const _modules = require('./core/engine/ModuleFinder');
+const ModuleRegistry = require('./core/engine/ModuleRegistry');
 require('dotenv').config();
 
 
@@ -11,11 +11,8 @@ global.publicDir = rootDir + "/public/";
 global.cacheDir = publicDir + "cache/";
 global.publicImgDir = publicDir + "images/";
 
-// Load modules
-const loadedModules = _modules.loadModules();
-
 // create express app
-const app = express();
+app = express();
 
 // Trust proxy
 app.enable('trust proxy');
@@ -28,6 +25,9 @@ app.options('*', cors);
 // parse requests of content-type - application/json
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+// Load modules
+global.loadedModules = ModuleRegistry.register();
 
 // Include express routes
 app.use(require("./core/routes/routes"));
