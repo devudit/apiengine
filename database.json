@@ -1,0 +1,20 @@
+{
+    "defaultEnv": {"ENV": "NODE_ENV"},
+    "sql-file": true,
+    "dev": {
+      "driver": "mysql",
+      "host": "localhost",
+      "user": "root",
+      "password": "root",
+      "database": "apiengine",
+      "multipleStatements": true
+    },
+    "prod": {
+      "driver": "mysql",
+      "host": {"ENV": "SQL_HOST"},
+      "user": {"ENV": "SQL_USER"},
+      "password": {"ENV": "SQL_PASSWORD"},
+      "database": {"ENV": "SQL_DATABASE"},
+      "multipleStatements": true
+    }
+  }

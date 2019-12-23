@@ -3,7 +3,10 @@ const bodyParser = require('body-parser');
 const cors = require('cors')();
 const ModuleRegistry = require('./core/engine/ModuleRegistry');
 require('dotenv').config();
-
+const _dbm = require('db-migrate');
+global.dbMigrate = _dbm.getInstance(true);
+const bluebird = require('bluebird');
+global.fs = bluebird.promisifyAll(require("fs"));
 
 // Global directories
 global.rootDir = __dirname;
