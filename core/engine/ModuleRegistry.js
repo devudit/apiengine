@@ -7,7 +7,20 @@ module.exports = {
     register: function () {
         var modules = [];
         if(app){
-            fs.recurse(rootDir+'/modules', [
+            // Register core modules
+            let core_modules = this._register(rootDir+'/core/modules');
+            // Register contributed modules
+            let contrib_modules = this._register(rootDir+'/modules');
+
+            modules.push(core_modules);
+            modules.push(contrib_modules);
+        }
+        return modules;
+    },
+    _register: function(dir){
+        var modules = [];
+        if(dir){
+            fs.recurse(dir, [
                 '**/module.*.js'
             ], function(filepath, relative, filename) {
                 if (filename) {

@@ -8,6 +8,9 @@ global.dbMigrate = _dbm.getInstance(true);
 const bluebird = require('bluebird');
 global.fs = bluebird.promisifyAll(require("fs"));
 
+// Mysql 
+global.mysql = require('./core/database/mysql');
+
 // Global directories
 global.rootDir = __dirname;
 global.publicDir = rootDir + "/public/";
@@ -29,11 +32,10 @@ app.options('*', cors);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// Load modules
+// Load core and contrib modules
 global.loadedModules = ModuleRegistry.register();
 
-// Include express routes
-app.use(require("./core/routes/routes"));
+// Server
 let server = require('http').createServer(app);
 
 // listen for requests
