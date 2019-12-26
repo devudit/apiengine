@@ -3,9 +3,9 @@
  */
 const express = require('express');
 const router = new express.Router({});
+const user = require('../controllers/user.controller');
 
 // Basic
-router.get('/api/v1/register', (req, res) => {
-    res.status(200).send("Server App is running OK!").end();
-});
+router.post('/api/v1/register', user.userRegister);
+router.post('/api/v1/login', user.userLogin);
 module.exports = router;

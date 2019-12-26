@@ -1,4 +1,9 @@
 const mysql = require("mysql2/promise");
+global.foreignKeys = {
+    "users": {
+        
+    }
+};
 let config = {
     connectionLimit: 100,
     host: process.env.SQL_HOST,
@@ -105,8 +110,6 @@ module.exports = {
         }
         let query = 'INSERT INTO ' + tableName + '(' + Object.keys(row).join(',') + ') VALUES (' + ''.padStart((Object.values(row).length * 2) - 1, '?,') + ')';
         let [result, ignored] = await sql.query(query, Object.values(row));
-        if (tableName === 'service')
-            serviceTree = await this.service.getServicesTree();
         return result.insertId;
     },
     deleteRows: async function (tableName, Ids) {

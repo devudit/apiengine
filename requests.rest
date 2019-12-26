@@ -1,0 +1,19 @@
+POST http://localhost:5232/api/v1/register
+Content-Type: application/json
+
+{
+"name": "admin2", 
+"mail": "admin2@gmail.com",
+"full_name": "Udit Rawat",
+"pass": "admin"
+}
+
+###
+POST http://localhost:5232/api/v1/login
+Content-Type: application/json
+
+{
+"name": "admin2", 
+"mail": "admin2@gmail.com",
+"pass": "admin"
+} 

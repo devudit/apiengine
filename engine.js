@@ -4,18 +4,19 @@ const cors = require('cors')();
 const ModuleRegistry = require('./core/engine/ModuleRegistry');
 require('dotenv').config();
 const _dbm = require('db-migrate');
-global.dbMigrate = _dbm.getInstance(true);
 const bluebird = require('bluebird');
-global.fs = bluebird.promisifyAll(require("fs"));
-
-// Mysql 
-global.mysql = require('./core/database/mysql');
 
 // Global directories
 global.rootDir = __dirname;
 global.publicDir = rootDir + "/public/";
 global.cacheDir = publicDir + "cache/";
 global.publicImgDir = publicDir + "images/";
+
+// Engine Globals
+global.dbMigrate = _dbm.getInstance(true);
+global.fs = bluebird.promisifyAll(require("fs"));
+global.utils = require('./core/engine/Utils');
+global.mysql = require('./core/database/mysql');
 
 // create express app
 app = express();

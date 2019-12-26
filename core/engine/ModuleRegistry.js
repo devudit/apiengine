@@ -27,6 +27,14 @@ module.exports = {
                     let _module = require(filepath);
                     modules.push(_module);
 
+                    // Register Models
+                    let models = _module.rootDir+'/src/'+_module.models;
+                    if(fs.fs.existsSync(models)){
+                        let _key = utils.toCamelCase(_module.name);
+                        
+                        mysql[_key] = require(models);
+                    }
+
                     // Register Module routes
                     let routes = _module.rootDir+'/src/'+_module.routes;
                     if(fs.fs.existsSync(routes)){

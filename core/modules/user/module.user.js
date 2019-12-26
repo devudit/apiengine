@@ -9,6 +9,7 @@ class User {
         this.description = "Core user functionality";
         this.rootDir = __dirname;
         this.routes = "routes/routes.js";
+        this.models = "models/user.model.js";
         this.migrations = "migrations/migrations.js";
     }
 }

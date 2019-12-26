@@ -4,7 +4,7 @@
   "description": "Collection of Restful endpoints",
   "main": "engine.js",
   "scripts": {
-    "start": "node engine.js",
+    "start": "nodemon engine.js",
     "devStart": "nodemon engine.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
